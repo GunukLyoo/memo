@@ -8,7 +8,7 @@
 <title>memoReg</title>
 </head>
 <body>
-	<%
+<!-- 	<%
 		textFile file = new textFile();
 		boolean b;
 		
@@ -19,6 +19,23 @@
 		if(b==true) {
 			out.println("<h3>저장 완료!");
 		} else if(b==false) {
+			out.println("<h3>저장 실패!");
+		}
+	%>
+	 -->
+	 
+	<jsp:useBean id="memo" class="memo.textFile" />
+	
+	<jsp:setProperty property="*" name="memo"/>
+	
+	<% 
+		boolean c;
+	
+		c = memo.saveFile();
+		
+		if(c==true) {
+			out.println("<h3>저장 완료!");
+		} else if(c==false) {
 			out.println("<h3>저장 실패!");
 		}
 	%>
