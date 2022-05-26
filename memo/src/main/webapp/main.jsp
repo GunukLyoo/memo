@@ -32,7 +32,7 @@
 		   }
 	   %>
      </ol>
-
+	
 	 <a href="memo.jsp">메모 쓰기</a>
   </main>
 </body>

@@ -20,16 +20,20 @@
 			String path = "C:\\Users\\" + name + "\\Documents\\text\\" + title;
 			String line = "";
 			String txt = "";
-		
+
 			FileReader fr = new FileReader(path);
 			BufferedReader br = new BufferedReader(fr);
-		
+
 			while((line = br.readLine())!=null){
 				txt = txt + line;
 			}
 		%>
+		<h1><%=title.replace(".txt", "") %></h1>
 		<p><%=txt %></p>
+
+		<input type="button" id="change" onclick="location.href='Change_Memo.jsp?title=<%=title%>'" value="수정" />
+		<input type="button" onclick="history.back()" value="취소" />
 	</main>
-	
+
 </body>
 </html>
