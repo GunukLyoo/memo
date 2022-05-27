@@ -21,9 +21,11 @@
 		while((line = br.readLine())!=null){
 			txt = txt + line;
 		}
+		
+		application.setAttribute("post_title", title);
 	%>
 	
-	<form action="memoReg.jsp">
+	<form action="memoChange.jsp">
 		제목: <input type="text" name="title" value=<%=title.replace(".txt", "") %>><br>
 		내용: <input type="text" style="width:200px; height:50px" name="memo" value=<%=txt %>><br>
 		<input type="submit" value="저장">

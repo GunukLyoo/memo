@@ -5,7 +5,6 @@ import java.io.*;
 public class textFile {
 	private String title;
 	private String memo;
-	private File file;
 	
 	public String getTitle() {
 		return title;
@@ -18,10 +17,6 @@ public class textFile {
 	}
 	public void setMemo(String memo) {
 		this.memo = memo;
-	}	
-	public File getFile() {
-		file = new File("C:\\Users\\Gunuk R Lyoo\\eclipse-workspace\\memo\\text\\" + title + ".txt");
-		return file;
 	}
 	public boolean saveFile(){
 		try {
