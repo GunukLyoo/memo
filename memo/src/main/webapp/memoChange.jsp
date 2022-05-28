@@ -1,7 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ page import="java.io.*" %>
-<%@ page improt="java.nio.file.Path" %>
+<%@ page import="java.nio.file.Path" %>
+<%@ page import="java.nio.file.Paths" %>
+<%@ page import="java.nio.file.Files" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -22,7 +24,10 @@
 		output.write(by);
 		output.close();
 		
-		Path old = Paths.get(path + application.getAttribute("post_title"));
+		Path oldt = Paths.get(path + application.getAttribute("post_title"));
+		Path newt = Paths.get(path + title);
+		
+		Files.move(oldt, newt);
 	%>
 	
 	<jsp:forward page="main.jsp" />

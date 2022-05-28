@@ -27,6 +27,9 @@
 			while((line = br.readLine())!=null){
 				txt = txt + line;
 			}
+			
+			fr.close();
+			br.close();
 		%>
 		<h1><%=title.replace(".txt", "") %></h1>
 		<p><%=txt %></p>

@@ -23,6 +23,9 @@
 		}
 		
 		application.setAttribute("post_title", title);
+		
+		fr.close();
+		br.close();
 	%>
 	
 	<form action="memoChange.jsp">
