@@ -28,6 +28,11 @@
 		Path newt = Paths.get(path + title);
 		
 		Files.move(oldt, newt);
+		
+		System.out.println(title);
+		
+		File file = new File(path+title);
+		file.delete();
 	%>
 	
 	<jsp:forward page="main.jsp" />
