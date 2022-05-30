@@ -2,69 +2,46 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ page import="java.io.*" %> 
+<%@ page import="java.sql.*" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>memoReg</title>
 </head>
-<body>
-<!-- 	<%
-		textFile file = new textFile();
-		boolean b;
+<body> 
+	<%
+	    request.setCharacterEncoding("UTF-8");
+		//1.JDBC Driver 로딩하기
+		Class.forName("oracle.jdbc.driver.OracleDriver");
+		//2.DB 서버 접속하기
+		String url = "jdbc:oracle:thin:@localhost:1521:system";
+		Connection conn = DriverManager.getConnection(url, "c##memo", "memo1234");
 		
-		file.setTitle(request.getParameter("title"));
-		file.setMemo(request.getParameter("memo"));
-		b = file.saveFile();
-		
-		if(b==true) {
-			out.println("<h3>저장 완료!");
-		} else if(b==false) {
-			out.println("<h3>저장 실패!");
+		int num=0;
+		String sql="select max(bno) from board";
+		PreparedStatement pstmt=conn.prepareStatement(sql);
+		ResultSet rs=pstmt.executeQuery();
+
+		if(rs.next()){
+			num=rs.getInt("max(bno)")+1;	
 		}
+	
+		Timestamp reg_date=new Timestamp(System.currentTimeMillis());
+		
+		sql = "insert into board (BNO, TITLE, CONTENT, REGDATE) values(?,?,?,?)";
+		pstmt = conn.prepareStatement(sql);
+		
+		pstmt.setInt(1, num);
+		pstmt.setString(2, request.getParameter("title"));
+		pstmt.setString(3, request.getParameter("memo"));
+		pstmt.setTimestamp(4, reg_date);
+		
+		pstmt.executeUpdate();
+		
+		pstmt.close();
 	%>
-	 -->
 	 
-	<jsp:useBean id="memo" class="memo.textFile" />
-	
-	<jsp:setProperty property="*" name="memo"/>
-	
-	<% 
-		try {
-			String name = System.getProperty("user.name");
-	    	System.out.println(name);
-	    	
-	    	String title = request.getParameter("title");
-		    String path = "C:\\Users\\" + name + "\\Documents\\text\\";
-		    System.out.println(path);
-	    
-	    	File dir = new File(path);
-	    
-	    	if(dir.exists()) {
-	    	
-	    	}else {
-		    	dir.mkdir();
-		    }
-			OutputStream output = new FileOutputStream(path + title + ".txt");
-			byte[] by = memo.getMemo().getBytes();//memo.getBytes();
-			output.write(by);
-			output.close();
-			out.println("<h3>저장 완료!");
-			//return true;
-		} catch (Exception e) {
-			// TODO: handle exception
-			e.printStackTrace();
-			out.println("<h3>저장 실패!");
-			//return false;
-		}
-		/*
-		if(c==true) {
-			out.println("<h3>저장 완료!");
-		} else if(c==false) {
-			out.println("<h3>저장 실패!");
-		}*/
-	%>
-	
 	<jsp:forward page="main.jsp" />
 </body>
 </html>

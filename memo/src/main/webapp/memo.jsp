@@ -8,9 +8,11 @@
 </head>
 <body>
 	<form action="memoReg.jsp" method="post">
-		제목: <input type="text" name="title"><br>
-		내용: <input type="text" style="width:200px; height:50px" name="memo"><br>
-		<input type="submit" value="저장">
+		<table border="1">
+			<tr><td>제목 </td><td> <input type="text" name="title"></td></tr>
+			<tr><td>내용 </td><td> <input type="text" style="width:200px; height:50px" name="memo"></td></tr>
+			<tr><td colspan="2"><input type="submit" value="저장"></td></tr>
+		</table>
 	</form>
 </body>
 </html>

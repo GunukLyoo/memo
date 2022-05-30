@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ page import="java.io.*" %>
+<%@ page import="java.sql.*" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -15,23 +16,39 @@
   </header>
   <main id="memo_list">
 	 <h3>메모 목록</h3>
-     <ol>
- 	   <%
-		   String name = System.getProperty("user.name");
-    	   String path = "C:\\Users\\" + name + "\\Documents\\text\\";
-
-		   File dir = new File(path);
-		   File files[] = dir.listFiles();
-
-		   for(int i = 0 ; i < files.length ; i++){
-			      String str = files[i].getName();
-			      //String[] array = str.split("");
-        %>
-			     <li> <a href="view_memo.jsp?title=<%=str%>"> <%=str %> <br></a></li>
-	     <%
-		   }
-	   %>
-     </ol>
+ 
+     <%
+     	Class.forName("oracle.jdbc.driver.OracleDriver");
+		
+		String url = "jdbc:oracle:thin:@localhost:1521:system";
+		Connection conn = DriverManager.getConnection(url, "c##memo", "memo1234");
+		
+		String sql = "select * from board";
+		PreparedStatement pstmt=conn.prepareStatement(sql);
+		
+		ResultSet rs = pstmt.executeQuery();
+		
+		
+     %>
+     
+     <table border="1">
+     	<tr>
+     		<td>글 번호</td>
+     		<td>글 제목</td>
+     		<td>날짜</td>
+     	</tr>
+     	<%
+     		while(rs.next()){
+     	%>
+     	<tr>
+     		<td><%= rs.getInt("bno") %></td>
+     		<td><a href="view_memo.jsp?bno=<%= rs.getString("bno")%>"><%= rs.getString("title") %></a></td>
+     		<td><%= rs.getTimestamp("regdate") %></td>
+     	</tr>
+     	<%
+     		}
+     	%>
+     </table>
 	
 	 <a href="memo.jsp">메모 쓰기</a>
   </main>
