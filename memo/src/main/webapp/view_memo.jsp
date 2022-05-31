@@ -26,12 +26,14 @@
 		PreparedStatement pstmt=conn.prepareStatement(sql);
 		
 		ResultSet rs = pstmt.executeQuery();
+		
      	%>
 
 		<table border="1">
      		<tr>
 	     		<td>글 번호</td>
     	 		<td>글 제목</td>
+     			<td>글 내용</td>
      			<td>날짜</td>
      		</tr>
      		<%
@@ -39,7 +41,8 @@
     	 	%>
      		<tr>
      			<td><%= rs.getInt("bno") %></td>
-     			<td><%= rs.getString("title") %></a></td>
+     			<td><%= rs.getString("title") %></td>     			
+     			<td><%= rs.getString("content") %></td>;
      			<td><%= rs.getTimestamp("regdate") %></td>
      		</tr>
      		<%
@@ -50,6 +53,8 @@
      			<td><input type="button" onclick="history.back()" value="취소" /></td>
      		</tr>
      </table>
+     
+     <%pstmt.close(); %>
 		
 	</main>
 

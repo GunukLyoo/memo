@@ -23,11 +23,11 @@
 		String url = "jdbc:oracle:thin:@localhost:1521:system";
 		Connection conn = DriverManager.getConnection(url, "c##memo", "memo1234");
 		
-		String sql = "select * from board";
+		String sql = "select * from board order by bno desc";
 		PreparedStatement pstmt=conn.prepareStatement(sql);
 		
 		ResultSet rs = pstmt.executeQuery();
-		
+
 		
      %>
      
@@ -49,6 +49,8 @@
      		}
      	%>
      </table>
+     
+	<%pstmt.close(); %>
 	
 	 <a href="memo.jsp">메모 쓰기</a>
   </main>

@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ page import="java.io.*" %>    
+<%@ page import="java.io.*" %>
+<%@ page import="java.sql.*" %>    
 <!DOCTYPE html>
 <html>
 <head>
@@ -9,29 +10,41 @@
 </head>
 <body>
 	<%
-		String name = System.getProperty("user.name");
-		String title = request.getParameter("title");
-		String path = "C:\\Users\\" + name + "\\Documents\\text\\" + title;
-		String line = "";
-		String txt = "";
+		Class.forName("oracle.jdbc.driver.OracleDriver");
 		
-		FileReader fr = new FileReader(path);
-		BufferedReader br = new BufferedReader(fr);
-
-		while((line = br.readLine())!=null){
-			txt = txt + line;
-		}
+		String bno = request.getParameter("bno");
+		String url = "jdbc:oracle:thin:@localhost:1521:system";
+		Connection conn = DriverManager.getConnection(url, "c##memo", "memo1234");
+		String sql = "select * from board where bno=" + bno;
 		
-		application.setAttribute("post_title", title);
+		PreparedStatement pstmt = conn.prepareStatement(sql);
 		
-		fr.close();
-		br.close();
-	%>
-	
-	<form action="memoChange.jsp">
-		제목: <input type="text" name="title" value=<%=title.replace(".txt", "") %>><br>
-		내용: <input type="text" style="width:200px; height:50px" name="memo" value=<%=txt %>><br>
-		<input type="submit" value="저장">
+		ResultSet rs = pstmt.executeQuery();
+		application.setAttribute("bno", bno);
+		%>
+	<form action="memoChange.jsp" method="post">
+		<table border="1">
+     		<tr>
+     			<%
+	     		while(rs.next()){
+    	 		%>
+    	 		<td>글 제목</td>
+     			<td><input type="text" name="title" value=<%= rs.getString("title") %>></td>
+     		</tr>
+     		
+     		<tr>
+     			<td>글 내용</td>
+     			<td><input type="text" name="content" value=<%= rs.getString("content") %>></td>
+     		</tr>
+     		<%
+     			}
+     		%>
+     		<tr>
+     			<td><input type="submit" value="저장" /></td>
+     			<td><input type="button" onclick="location.href='main.jsp'" value="취소" /></td>
+     		</tr>
+     	</table>
 	</form>
+     <%pstmt.close(); %>
 </body>
 </html>
