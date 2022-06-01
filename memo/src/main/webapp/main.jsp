@@ -7,14 +7,18 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+
+<style type="text/css">
+	.centered{display: table; margin-left: auto;margin-right: auto}
+</style>
 </head>
 <body>
   <header>
-    <div id="logo">
+    <div id="logo" class="centered">
       <a href="main.jsp"><h1>InterNote</h1></a>
     </div>
   </header>
-  <main id="memo_list">
+  <main id="memo_list" class="centered">
 	 <h3>메모 목록</h3>
  
      <%

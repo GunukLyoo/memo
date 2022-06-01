@@ -49,8 +49,9 @@
      			}
      		%>
      		<tr>
-     			<td><input type="button" id="change" onclick="location.href='Change_Memo.jsp?bno=<%=request.getParameter("bno")%>'" value="수정" /></td>
      			<td><input type="button" onclick="history.back()" value="취소" /></td>
+     			<td><input type="button" id="change" onclick="location.href='Change_Memo.jsp?bno=<%=request.getParameter("bno")%>'" value="수정" /></td>
+  				<td><input type="button" onclick="location.href='delete_memo.jsp?bno=<%=request.getParameter("bno")%>'" value="삭제"></td>
      		</tr>
      </table>
      
