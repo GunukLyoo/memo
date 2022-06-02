@@ -7,10 +7,13 @@
 <head>
 <meta charset="UTF-8">
 <title>view memo</title>
+<style type="text/css">
+	.centered{display: table; margin-left: auto;margin-right: auto; margin-top: auto; margin-bottom: auto;}
+</style>
 </head>
 <body>
 	<header>
-    	<div id="logo">
+    	<div id="logo" class="centered">
       		<a href="main.jsp"><h1>InterNote</h1></a>
     	</div>
   	</header>
@@ -29,7 +32,7 @@
 		
      	%>
 
-		<table border="1">
+		<table border="1" class="centered">
      		<tr>
 	     		<td>글 번호</td>
     	 		<td>글 제목</td>

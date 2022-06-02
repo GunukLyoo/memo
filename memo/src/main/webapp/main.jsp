@@ -9,7 +9,7 @@
 <title>Insert title here</title>
 
 <style type="text/css">
-	.centered{display: table; margin-left: auto;margin-right: auto}
+	.centered{display: table; margin-left: auto;margin-right: auto; margin-top: auto; margin-bottom: auto;}
 </style>
 </head>
 <body>

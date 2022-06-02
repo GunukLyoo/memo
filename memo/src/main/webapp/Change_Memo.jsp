@@ -7,6 +7,9 @@
 <head>
 <meta charset="UTF-8">
 <title>Change Memo</title>
+<style type="text/css">
+	.centered{display: table; margin-left: auto;margin-right: auto; margin-top: auto; margin-bottom: auto;}
+</style>
 </head>
 <body>
 	<%
@@ -22,7 +25,7 @@
 		ResultSet rs = pstmt.executeQuery();
 		application.setAttribute("bno", bno);
 		%>
-	<form action="memoChange.jsp" method="post">
+	<form action="memoChange.jsp" method="post" class="centered">
 		<table border="1">
      		<tr>
      			<%
