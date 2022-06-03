@@ -10,6 +10,17 @@
 
 <style type="text/css">
 	.centered{display: table; margin-left: auto;margin-right: auto; margin-top: auto; margin-bottom: auto;}
+	table {
+		margin-left: auto;
+		margin-right: auto;
+		width: 95%;
+		border-top: 1px solid #444444;
+    	border-collapse: collapse;
+	}
+	th, td {
+    	border-bottom: 1px solid #444444;
+    	padding: 10px;
+  	}
 </style>
 </head>
 <body>
@@ -18,8 +29,8 @@
       <a href="main.jsp"><h1>InterNote</h1></a>
     </div>
   </header>
-  <main id="memo_list" class="centered">
-	 <h3>메모 목록</h3>
+  <main id="memo_list">
+	 <h3 style="margin-left: 3%;">메모 목록</h3>
  
      <%
      	Class.forName("oracle.jdbc.driver.OracleDriver");
@@ -35,7 +46,7 @@
 		
      %>
      
-     <table border="1">
+     <table>
      	<tr>
      		<td>글 번호</td>
      		<td>글 제목</td>
@@ -56,7 +67,7 @@
      
 	<%pstmt.close(); %>
 	
-	 <a href="memo.jsp">메모 쓰기</a>
+	 <a href="memo.jsp" style="margin-left: 94%;">메모 쓰기</a>
   </main>
 </body>
 </html>
