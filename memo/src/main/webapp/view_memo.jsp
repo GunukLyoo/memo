@@ -9,6 +9,17 @@
 <title>view memo</title>
 <style type="text/css">
 	.centered{display: table; margin-left: auto;margin-right: auto; margin-top: auto; margin-bottom: auto;}
+	table {
+		margin-left: auto;
+		margin-right: auto;
+		width: 95%;
+		border-top: 1px solid #444444;
+    	border-collapse: collapse;
+	}
+	th, td {
+    	border-bottom: 1px solid #444444;
+    	padding: 10px;
+  	}
 </style>
 </head>
 <body>
@@ -52,9 +63,9 @@
      			}
      		%>
      		<tr>
-     			<td><input type="button" onclick="history.back()" value="취소" /></td>
-     			<td><input type="button" id="change" onclick="location.href='Change_Memo.jsp?bno=<%=request.getParameter("bno")%>'" value="수정" /></td>
-  				<td><input type="button" onclick="location.href='delete_memo.jsp?bno=<%=request.getParameter("bno")%>'" value="삭제"></td>
+     			<td colspan="4""><input type="button" onclick="history.back()" value="취소" />
+     			<input type="button" id="change" onclick="location.href='Change_Memo.jsp?bno=<%=request.getParameter("bno")%>'" value="수정" />
+  				<input type="button" onclick="location.href='delete_memo.jsp?bno=<%=request.getParameter("bno")%>'" value="삭제"></td>
      		</tr>
      </table>
      
