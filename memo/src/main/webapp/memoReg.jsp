@@ -29,13 +29,14 @@
 	
 		Timestamp reg_date=new Timestamp(System.currentTimeMillis());
 		
-		sql = "insert into board (BNO, TITLE, CONTENT, REGDATE) values(?,?,?,?)";
+		sql = "insert into board (BNO, TITLE, CONTENT, REGDATE, AUTHOR) values(?,?,?,?,?)";
 		pstmt = conn.prepareStatement(sql);
 		
 		pstmt.setInt(1, num);
 		pstmt.setString(2, request.getParameter("title"));
 		pstmt.setString(3, request.getParameter("memo"));
 		pstmt.setTimestamp(4, reg_date);
+		pstmt.setString(5, request.getParameter("author"));
 		
 		pstmt.executeUpdate();
 		

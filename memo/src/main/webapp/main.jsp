@@ -57,6 +57,7 @@
      	<tr>
      		<td>글 번호</td>
      		<td>글 제목</td>
+     		<td>작성자</td>
      		<td>날짜</td>
      	</tr>
      	<%
@@ -65,6 +66,7 @@
      	<tr>
      		<td><%= rs.getInt("bno") %></td>
      		<td><a href="view_memo.jsp?bno=<%= rs.getString("bno")%>"><%= rs.getString("title") %></a></td>
+     		<td><%= rs.getString("author") %></td>
      		<td><%= rs.getTimestamp("regdate") %></td>
      	</tr>
      	<%

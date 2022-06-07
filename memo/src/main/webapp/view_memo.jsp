@@ -55,10 +55,12 @@
      		<tr>
 	     		<td>글 번호</td>
     	 		<td><%= rs.getInt("bno") %></td>
+    	 		<td>글 제목</td>
+     			<td><%= rs.getString("title") %></td>
      		</tr>
      		<tr>
-     			<td>글 제목</td>
-     			<td><%= rs.getString("title") %></td>
+     			<td>작성자</td>
+     			<td><%= rs.getString("author") %></td>
      			<td>날짜</td>
      			<td><%= rs.getTimestamp("regdate") %></td>
      		</tr>
