@@ -33,10 +33,14 @@
 		<form action="memoReg.jsp" method="post">
 			<table border="1">
 				<tr>
-					<td>제목 </td>
-					<td> <input type="text" name="title"></td>
 					<td>작성자</td>
 					<td><input type="text" name="author" value="익명"></td>
+					<td>비밀번호</td>
+					<td><input type="password" name="password" value="0000"></td>
+				</tr>
+				<tr>
+					<td>제목 </td>
+					<td colspan="3"> <input type="text" name="title"></td>
 				</tr>
 				<tr>
 					<td>내용 </td>

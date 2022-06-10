@@ -3,6 +3,7 @@
     pageEncoding="UTF-8"%>
 <%@ page import="java.io.*" %> 
 <%@ page import="java.sql.*" %>
+<%@ page import="java.util.*" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -29,7 +30,11 @@
 	
 		Timestamp reg_date=new Timestamp(System.currentTimeMillis());
 		
-		sql = "insert into board (BNO, TITLE, CONTENT, REGDATE, AUTHOR) values(?,?,?,?,?)";
+		String pwd = request.getParameter("password");
+		String encodepwd = Base64.getEncoder().encodeToString(pwd.getBytes());
+		System.out.println(encodepwd);
+		
+		sql = "insert into board (BNO, TITLE, CONTENT, REGDATE, AUTHOR, PWD) values(?,?,?,?,?,?)";
 		pstmt = conn.prepareStatement(sql);
 		
 		pstmt.setInt(1, num);
@@ -37,6 +42,7 @@
 		pstmt.setString(3, request.getParameter("memo"));
 		pstmt.setTimestamp(4, reg_date);
 		pstmt.setString(5, request.getParameter("author"));
+		pstmt.setString(6, encodepwd);
 		
 		pstmt.executeUpdate();
 		
