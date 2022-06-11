@@ -34,17 +34,17 @@
 			<table border="1">
 				<tr>
 					<td>작성자</td>
-					<td><input type="text" name="author" value="익명"></td>
+					<td><input type="text" name="author" value="익명" required="required"></td>
 					<td>비밀번호</td>
-					<td><input type="password" name="password" value="0000"></td>
+					<td><input type="password" name="password" value="0000" required="required"></td>
 				</tr>
 				<tr>
 					<td>제목 </td>
-					<td colspan="3"> <input type="text" name="title"></td>
+					<td colspan="3"> <input type="text" name="title" required="required"></td>
 				</tr>
 				<tr>
 					<td>내용 </td>
-					<td colspan="3"> <input type="text"  name="memo"></td>
+					<td colspan="3"> <input type="text"  name="memo" required="required"></td>
 				</tr>
 				<tr>
 					<td colspan="4"><input type="submit" value="저장"></td>
