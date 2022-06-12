@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ page import="java.io.*" %>
 <%@ page import="java.sql.*" %>
+<%@ page %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -11,7 +12,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Pinyon+Script&display=swap" rel="stylesheet">
 
-
+<style type="text/javascript" src="DBset.js" />
 <style type="text/css">
 	.centered{display: table; margin-left: auto;margin-right: auto; margin-top: auto; margin-bottom: auto;}
 	#logo{
