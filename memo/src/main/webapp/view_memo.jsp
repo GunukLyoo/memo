@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ page import="java.io.*" %>
 <%@ page import="java.sql.*" %>
+<%@ page import="memo.DBset"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -39,10 +40,8 @@
 	<main>
 
 		<%
-     	Class.forName("oracle.jdbc.driver.OracleDriver");
-		
-		String url = "jdbc:oracle:thin:@localhost:1521:system";
-		Connection conn = DriverManager.getConnection(url, "c##memo", "memo1234");
+     	DBset dbs = new DBset();
+		Connection conn = dbs.getConnection();
 		
 		String sql = "select * from board where bno=" + request.getParameter("bno");
 		PreparedStatement pstmt=conn.prepareStatement(sql);
