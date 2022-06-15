@@ -44,7 +44,7 @@
 				</tr>
 				<tr>
 					<td>내용 </td>
-					<td colspan="3"> <input type="text"  name="memo" required="required"></td>
+					<td colspan="3"> <input type="text"  name="content" required="required"></td>
 				</tr>
 				<tr>
 					<td colspan="4"><input type="submit" value="저장"></td>

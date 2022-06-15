@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ page import="java.io.*" %>
 <%@ page import="java.sql.*" %>
-<%@ page import="memo.DBset"%>
+<%@ page import="memo.DBconnect"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -40,22 +40,22 @@
 	 <h3 style="margin-left: 3%;">메모 목록</h3>
  
      <%
-     	//Class.forName("oracle.jdbc.driver.OracleDriver");
-		
-		//String url = "jdbc:oracle:thin:@localhost:1521:system";
-		
-		DBset dbs = new DBset();
-		
-		Connection conn = dbs.getConnection();
-		//DriverManager.getConnection(url, "c##memo", "memo1234");
-		
-		String sql = "select * from board order by bno desc";
-		PreparedStatement pstmt=conn.prepareStatement(sql);
-		
-		ResultSet rs = pstmt.executeQuery();
+      
 
-		
-     %>
+           	//Class.forName("oracle.jdbc.driver.OracleDriver");
+      		
+      		//String url = "jdbc:oracle:thin:@localhost:1521:system";
+      		
+      		DBconnect dbs = new DBconnect();
+      		
+      		Connection conn = dbs.getConnection();
+      		//DriverManager.getConnection(url, "c##memo", "memo1234");
+      		
+      		String sql = "select * from board order by bno desc";
+      		PreparedStatement pstmt=conn.prepareStatement(sql);
+      		
+      		ResultSet rs = pstmt.executeQuery();
+      %>
      
      <table>
      	<tr>

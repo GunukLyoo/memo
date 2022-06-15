@@ -1,8 +1,9 @@
+<%@page import="memo.DBconnect"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ page import="java.io.*" %>
 <%@ page import="java.sql.*" %>
-<%@ page import="memo.DBset"%>
+<%@ page import="memo.DBconnect"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -40,7 +41,7 @@
 	<main>
 
 		<%
-     	DBset dbs = new DBset();
+     	DBconnect dbs = new DBconnect();
 		Connection conn = dbs.getConnection();
 		
 		String sql = "select * from board where bno=" + request.getParameter("bno");
