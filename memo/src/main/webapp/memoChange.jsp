@@ -2,6 +2,7 @@
     pageEncoding="UTF-8" import="java.sql.*"%>
 <%@ page import="java.io.*" %>
 <%@ page import="java.util.*" %>
+<%@ page import="memo.SQLset" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,45 +11,12 @@
 </head>
 <body>
 	<%
-	request.setCharacterEncoding("UTF-8");
-	Class.forName("oracle.jdbc.driver.OracleDriver");
+		SQLset sqls = new SQLset();
 	
-	String url = "jdbc:oracle:thin:@localhost:1521:system";
-	Connection conn = DriverManager.getConnection(url, "c##memo", "memo1234");
+		sqls.SQLupdate((String)application.getAttribute("bno"), request.getParameter("title"), request.getParameter("content"), request.getParameter("author"), request.getParameter("password"));	
 	
-	String pwd = request.getParameter("password");
-	String encodepwd = Base64.getEncoder().encodeToString(pwd.getBytes());
-	System.out.println(encodepwd);
-	
-	String sql = "SELECT * FROM board WHERE bno=" + application.getAttribute("bno");
-	PreparedStatement pstmt = conn.prepareStatement(sql);
-	ResultSet rs = pstmt.executeQuery();
-	rs.next();
-	
-	pstmt.clearParameters();
-	
-	if(rs.getString("pwd")!=encodepwd){
-		out.print("<script>alert(\"비밀번호 불일치!\");</script>");
-		out.print("<script>history.back();</script>");
-	}
-	else{
-		sql = "update board set title='"+request.getParameter("title")+"', content='"+request.getParameter("content") + "' where bno="+application.getAttribute("bno");
-	
-		System.out.println(sql);
-	
-		pstmt.executeUpdate();
-		pstmt.clearParameters();
-	
-		sql = "update board set author='"+ request.getParameter("author") + "' where bno="+application.getAttribute("bno");
-	
-		System.out.println(sql);
-	
-		pstmt = conn.prepareStatement(sql);
-		pstmt.executeUpdate();
-		pstmt.close();
 	%>
 	
 	<jsp:forward page="main.jsp" />
-	<%} %>
 </body>
 </html>

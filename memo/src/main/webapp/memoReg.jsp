@@ -16,7 +16,7 @@
 		request.setCharacterEncoding("UTF-8");
 	    SQLset sqls = new SQLset();
 		
-		sqls.SQLupdate(request.getParameter("title"), request.getParameter("content"), request.getParameter("author"), request.getParameter("password"));
+		sqls.SQLreg(request.getParameter("title"), request.getParameter("content"), request.getParameter("author"), request.getParameter("password"));
 	%>
 	 
 	<jsp:forward page="main.jsp" />

@@ -11,7 +11,7 @@ public class SQLset {
 		
 	}
 	
-	public void SQLupdate(String title, String content, String author, String pwd) throws Exception{
+	public void SQLreg(String title, String content, String author, String pwd) throws Exception{
 		DBconnect dbc = new DBconnect();
 		Connection conn = dbc.getConnection();
 		
@@ -44,4 +44,39 @@ public class SQLset {
 		pstmt.close();
 	}
 	
+	public void SQLupdate(String bno, String title, String content, String author, String pwd) throws Exception{
+		DBconnect dbc = new DBconnect();
+		Connection conn = dbc.getConnection();
+	
+		String encodepwd = Base64.getEncoder().encodeToString(pwd.getBytes());
+		System.out.println(encodepwd);
+		
+		String sql = "SELECT * FROM board WHERE bno=" + bno;
+		PreparedStatement pstmt = conn.prepareStatement(sql);
+		ResultSet rs = pstmt.executeQuery();
+		rs.next();
+		
+		pstmt.clearParameters();
+		
+		if(rs.getString("pwd")!=encodepwd){
+			System.out.print("<script>alert(\"비밀번호 불일치!\");</script>");
+			System.out.print("<script>history.back();</script>");
+		}
+		else{
+			sql = "update board set title='"+title+"', content='"+content + "' where bno="+bno;
+		
+			System.out.println(sql);
+		
+			pstmt.executeUpdate();
+			pstmt.clearParameters();
+		
+			sql = "update board set author='"+ author + "' where bno="+bno;
+		
+			System.out.println(sql);
+		
+			pstmt = conn.prepareStatement(sql);
+			pstmt.executeUpdate();
+			pstmt.close();
+		}
+	}
 }
