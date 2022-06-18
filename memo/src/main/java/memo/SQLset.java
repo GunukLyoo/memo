@@ -79,4 +79,14 @@ public class SQLset {
 			pstmt.close();
 		}
 	}
+	
+	public ResultSet SQLmain() throws Exception{
+		DBconnect dbc = new DBconnect();
+		Connection conn = dbc.getConnection();
+		
+		String sql = "select * from board order by bno desc";
+  		PreparedStatement pstmt=conn.prepareStatement(sql);
+  		
+  		return pstmt.executeQuery();
+	}
 }

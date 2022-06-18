@@ -1,8 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ page import="java.io.*" %>
 <%@ page import="java.sql.*" %>
-<%@ page import="memo.DBconnect"%>
+<%@ page import="memo.SQLset"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -40,21 +39,9 @@
 	 <h3 style="margin-left: 3%;">메모 목록</h3>
  
      <%
-      
-
-           	//Class.forName("oracle.jdbc.driver.OracleDriver");
+      		SQLset sqls = new SQLset();		
       		
-      		//String url = "jdbc:oracle:thin:@localhost:1521:system";
-      		
-      		DBconnect dbs = new DBconnect();
-      		
-      		Connection conn = dbs.getConnection();
-      		//DriverManager.getConnection(url, "c##memo", "memo1234");
-      		
-      		String sql = "select * from board order by bno desc";
-      		PreparedStatement pstmt=conn.prepareStatement(sql);
-      		
-      		ResultSet rs = pstmt.executeQuery();
+      		ResultSet rs = sqls.SQLmain();
       %>
      
      <table>
@@ -77,9 +64,6 @@
      		}
      	%>
      </table>
-     
-	<%pstmt.close(); %>
-	
 	 <a href="memo.jsp" style="margin-left: 94%;">메모 쓰기</a>
   </main>
 </body>
