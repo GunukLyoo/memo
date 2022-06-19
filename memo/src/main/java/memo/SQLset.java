@@ -89,4 +89,14 @@ public class SQLset {
   		
   		return pstmt.executeQuery();
 	}
+	
+	public ResultSet SQLview(String bno) throws Exception{
+		DBconnect dbc = new DBconnect();
+		Connection conn = dbc.getConnection();
+		
+		String sql = "select * from board where bno=" + bno;
+  		PreparedStatement pstmt=conn.prepareStatement(sql);
+  		
+  		return pstmt.executeQuery();
+	}
 }

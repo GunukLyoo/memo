@@ -1,9 +1,8 @@
-<%@page import="memo.DBconnect"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ page import="java.io.*" %>
 <%@ page import="java.sql.*" %>
-<%@ page import="memo.DBconnect"%>
+<%@page import="memo.SQLset"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -41,13 +40,10 @@
 	<main>
 
 		<%
-     	DBconnect dbs = new DBconnect();
-		Connection conn = dbs.getConnection();
+     	SQLset sqls = new SQLset();
 		
-		String sql = "select * from board where bno=" + request.getParameter("bno");
-		PreparedStatement pstmt=conn.prepareStatement(sql);
+		ResultSet rs = sqls.SQLview(request.getParameter("bno"));
 		
-		ResultSet rs = pstmt.executeQuery();
 		rs.next();
      	%>
 
@@ -74,8 +70,6 @@
   				<input type="button" onclick="location.href='delete_memo.jsp?bno=<%=request.getParameter("bno")%>'" value="삭제"></td>
      		</tr>
      </table>
-     
-     <%pstmt.close(); %>
 		
 	</main>
 
