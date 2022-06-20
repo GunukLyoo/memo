@@ -99,4 +99,39 @@ public class SQLset {
   		
   		return pstmt.executeQuery();
 	}
+	
+	public void SQLdelete(String bno) throws Exception{
+		DBconnect dbc = new DBconnect();
+		Connection conn = dbc.getConnection();
+		
+		int bnoc = Integer.parseInt(bno);
+		
+		String sql = "delete from board where bno="+bno;
+		
+		PreparedStatement pstmt = conn.prepareStatement(sql);
+		
+		pstmt.executeUpdate();
+		
+		pstmt.close();
+		
+		sql="select * from board where bno>"+bno;
+		
+		pstmt = conn.prepareStatement(sql);
+		
+		ResultSet rs = pstmt.executeQuery();
+		
+		sql = "update board set bno=? where bno=?";
+		PreparedStatement pstmt1 = conn.prepareStatement(sql);
+		
+		while(rs.next()){
+			pstmt1.setInt(1, bnoc);
+			pstmt1.setInt(2, bnoc+1);
+			pstmt1.executeUpdate();
+			pstmt1.clearParameters();
+			bnoc++;
+		}
+		
+		pstmt.close();
+		pstmt1.close();
+	}
 }
