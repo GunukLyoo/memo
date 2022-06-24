@@ -1,7 +1,8 @@
+<%@page import="java.sql.ResultSet"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ page import="java.io.*" %>
-<%@ page import="java.sql.*" %>    
+<%@ page import="memo.SQLset" %>  
 <!DOCTYPE html>
 <html>
 <head>
@@ -33,16 +34,11 @@
 	</header>
 	<main>
 		<%
-			Class.forName("oracle.jdbc.driver.OracleDriver");
+			SQLset sqls = new SQLset();
 		
 			String bno = request.getParameter("bno");
-			String url = "jdbc:oracle:thin:@localhost:1521:system";
-			Connection conn = DriverManager.getConnection(url, "c##memo", "memo1234");
-			String sql = "select * from board where bno=" + bno;
-		
-			PreparedStatement pstmt = conn.prepareStatement(sql);
-		
-			ResultSet rs = pstmt.executeQuery();
+			
+			ResultSet rs = sqls.SQLselect(bno);
 			application.setAttribute("bno", bno);
 			rs.next();
 			%>
