@@ -37,6 +37,11 @@
   </header>
   <main id="memo_list">
 	 <h3 style="margin-left: 3%;">메모 목록</h3>
+	 
+	 
+	 <datalist id="test">
+	 	<option value="test">
+	 </datalist>
  
      <%
       		SQLset sqls = new SQLset();		

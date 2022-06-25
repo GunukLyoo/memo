@@ -66,7 +66,7 @@
 	     		</tr>
      		</table>
 		</form>
-     	<%pstmt.close(); %>
+
      </main>
 </body>
 </html>
