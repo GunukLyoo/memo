@@ -1,3 +1,4 @@
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ page import="java.sql.*" %>
@@ -38,15 +39,19 @@
   <main id="memo_list">
 	 <h3 style="margin-left: 3%;">메모 목록</h3>
 	 
+	 <%
+	 	SQLset sqls = new SQLset();		
+   	
+   		ResultSet rs = sqls.getAuthor();
+   		rs.next();
+	 %>
 	 
 	 <datalist id="test">
 	 	<option value="test">
 	 </datalist>
  
      <%
-      		SQLset sqls = new SQLset();		
-      		
-      		ResultSet rs = sqls.SQLmain();
+      	 rs = sqls.SQLmain();
       %>
      
      <table>

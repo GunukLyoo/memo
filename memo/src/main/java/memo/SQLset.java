@@ -144,4 +144,14 @@ public class SQLset {
 		
 		return pstmt.executeQuery();
 	}
+	
+	public ResultSet getAuthor() throws Exception {
+		DBconnect dbc = new DBconnect();
+		Connection conn = dbc.getConnection();
+		
+		String sql = "select distinct author from board";
+		PreparedStatement pstmt = conn.prepareStatement(sql);
+		
+		return pstmt.executeQuery();
+	}
 }
