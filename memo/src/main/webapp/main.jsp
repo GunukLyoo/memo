@@ -43,12 +43,16 @@
 	 	SQLset sqls = new SQLset();		
    	
    		ResultSet rs = sqls.getAuthor();
-   		rs.next();
+   		
 	 %>
 	 
+	 
 	 <datalist id="test">
-	 	<option value="test">
+	 	<%while(rs.next()){ %>
+	 	<option value=<%= rs.getString("author") %>>
+	 	<%} %>
 	 </datalist>
+	 <input list="test">
  
      <%
       	 rs = sqls.SQLmain();
